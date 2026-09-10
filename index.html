@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mirlaine Brandão · Analista de Dados & BI</title>
+  <meta name="description" content="Analista de Dados e BI com experiência em SQL, QlikView, Power BI, AWS (Athena/QuickSight) e ETL. Projetos no SPU/MGI." />
+  <meta name="theme-color" content="#2d1b3a" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Paleta elegante - rosa/dourado/roxo
+            primary:     "#2d1b3a",
+            secondary:   "#4a2c59",
+            accent:      "#d4a843",
+            darkRose:    "#1a0f20",
+            midRose:     "#7b3a6e",
+            lightRose:   "#f3c6d8",
+            surface:     "#2a1d36",
+            surfaceSoft: "#3e2845",
+            neon:        "#e63991",
+            highlight:   "#d4a843",
+          },
+          fontFamily: { sans: ["Poppins", "sans-serif"] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #2d1b3a;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(227, 57, 145, 0.12), transparent 35%),
+        radial-gradient(circle at 85% 15%, rgba(212, 168, 67, 0.18), transparent 30%),
+        radial-gradient(circle at 75% 80%, rgba(227, 57, 145, 0.12), transparent 35%),
+        linear-gradient(145deg, #1a0f20 0%, #2d1b3a 45%, #4a2c59 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #e63991, #f3c6d8, #d4a843);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .surface-panel {
+      background: rgba(42, 29, 54, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(227, 57, 145, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .surface-panel-soft {
+      background: rgba(62, 40, 69, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(227, 57, 145, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-15px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes progressGrow { from { width: 0; } }
+    .skill-bar {
+      height: 0.625rem;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #e63991, #d4a843);
+    }
+
+    /* Tab active state */
+    .tab-btn {
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .tab-btn.active {
+      background: rgba(227, 57, 145, 0.1);
+      color: #e63991;
+      border-left-color: #e63991;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    /* Form focus */
+    .form-input:focus {
+      outline: none;
+      border-color: #e63991;
+      box-shadow: 0 0 0 3px rgba(227, 57, 145, 0.15);
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-100 antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="#" class="text-xl font-semibold gradient-text">Mirlaine Brandão</a>
+
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#sobre"          class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Sobre</a></li>
+        <li><a href="#experiencia"    class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Experiência</a></li>
+        <li><a href="#habilidades"    class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Habilidades</a></li>
+        <li><a href="#certificacoes"  class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Certificações</a></li>
+        <li><a href="#contato"        class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Contato</a></li>
+      </ul>
+
+      <button id="menu-toggle" class="md:hidden text-slate-200 p-2" aria-label="Abrir menu">
+        <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6l12 12M6 18L18 6" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <ul id="mobile-menu" class="hidden md:hidden bg-darkGreen/95 backdrop-blur-xl border-t border-white/10 px-6 py-4 flex-col gap-4">
+      <li><a href="#sobre"         class="mobile-link text-slate-300 hover:text-neon transition-colors">Sobre</a></li>
+      <li><a href="#experiencia"   class="mobile-link text-slate-300 hover:text-neon transition-colors">Experiência</a></li>
+      <li><a href="#habilidades"   class="mobile-link text-slate-300 hover:text-neon transition-colors">Habilidades</a></li>
+      <li><a href="#certificacoes" class="mobile-link text-slate-300 hover:text-neon transition-colors">Certificações</a></li>
+      <li><a href="#contato"       class="mobile-link text-slate-300 hover:text-neon transition-colors">Contato</a></li>
+    </ul>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="min-h-screen flex items-center justify-center pt-28 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+        <div class="flex-1 text-center md:text-left reveal">
+          <span class="inline-flex px-4 py-2 rounded-full border border-neon/40 bg-neon/10 text-sm text-neon mb-6">
+            Disponível para novos projetos
+          </span>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold mb-4 tracking-tight gradient-text">
+            Mirlaine Brandão
+          </h1>
+
+          <h2 class="text-xl sm:text-2xl text-slate-200 font-medium mb-4">
+            Analista de Dados · BI · SQL · Power BI
+          </h2>
+
+          <p class="text-slate-300 text-lg mb-8 max-w-xl leading-relaxed mx-auto md:mx-0">
+            Analista de Dados e BI com experiência em SQL, QlikView, Power BI, AWS (Athena e QuickSight) e ETL.
+            Projetos no setor público federal (SPU/MGI), ambiente ágil (Scrum/Jira) e migração de sistemas legados.
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <a href="#contato" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-midGreen text-white hover:from-midGreen hover:to-accent transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+              Entrar em contato
+            </a>
+            <a href="#experiencia" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium border border-neon/50 text-neon hover:bg-neon/10 transition-all duration-300">
+              Ver experiência
+            </a>
+            <a href="download-cv.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium border border-neutral-700 bg-neutral-800 text-slate-300 hover:text-neon transition-all duration-300" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                <path d="M21 15v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l1.4 5h4l1.4-5h7a2 2 0 0 1 2 2z" />
+                <polyline points="7 10 12 15 17 10" />
+                <line points="12 15 12 3" />
+              </svg>
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="relative animate-float reveal">
+          <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-neon/40 shadow-[0_0_60px_rgba(115,209,61,0.35)]">
+            <!-- Imagem inserida aqui. Certifique-se de salvar a foto como "pablo.jpg" na mesma pasta -->
+            <img
+              src="mirlaine.jpg"
+              alt="Mirlaine Brandão"
+              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mirlaine+Brand%C3%A3o&size=400&background=2d1b3a&color=e63991&bold=true&font-size=0.4';"
+              class="object-cover w-full h-full"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Sobre mim</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <div class="surface-panel p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-4 text-slate-100">Analista de Dados & BI — Transformando dados em decisões</h3>
+          <p class="text-slate-300 leading-relaxed mb-4">
+            Analista de Dados e BI com experiência em SQL, QlikView, Power BI, AWS (Athena/QuickSight) e ETL.
+            Atuação em projetos públicos federais, ambientes ágeis (Scrum/Jira) e migração de sistemas legados.
+          </p>
+        </div>
+
+        <div class="surface-panel-soft p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Informações</h3>
+          <ul class="space-y-4">
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Localização</span>
+              <span class="text-slate-100 font-medium text-sm">Belo Horizonte, Minas Gerais, Brasil</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Experiência</span>
+              <span class="text-slate-100 font-medium text-sm">1+ ano em BI · Qlik · SQL · Power BI</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Especialidade</span>
+              <span class="text-slate-100 font-medium text-sm">QlikView · SQL · Power BI · AWS</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Idiomas</span>
+              <span class="text-slate-100 font-medium text-sm">Português (nativo) · Inglês</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">E-mail</span>
+              <span class="text-slate-100 font-medium text-sm">mirlaine.brandao@gmail.com</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1">
+              <span class="text-slate-400 text-sm">LinkedIn</span>
+              <span class="text-slate-100 font-medium text-sm">/in/mirlaine-brandão-5a8a1515a</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIÊNCIA ===================== -->
+  <section id="experiencia" class="py-20 bg-gradient-to-b from-darkGreen/50 to-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Experiência</h2>
+
+      <div class="grid md:grid-cols-[260px_1fr] gap-6 mt-8">
+        <div id="tabs" class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2">
+          <!-- Tabs são geradas via JS -->
+        </div>
+
+        <div id="experience-content" class="surface-panel p-7 reveal">
+          <!-- Conteúdo é gerado via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HABILIDADES ===================== -->
+  <section id="habilidades" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Habilidades</h2>
+
+      <div id="skills-categories" class="grid md:grid-cols-2 gap-6 mt-8">
+        <!-- Categorias geradas via JS -->
+      </div>
+
+      <h3 class="text-2xl font-semibold text-slate-100 mt-16 mb-6 text-center reveal">
+        Ferramentas & Tecnologias
+      </h3>
+
+      <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <!-- Ferramentas geradas via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICAÇÕES ===================== -->
+  <section id="certificacoes" class="py-20 bg-gradient-to-b from-darkGreen/50 to-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Certificações & Formação</h2>
+
+      <div id="certifications-grid" class="grid md:grid-cols-2 gap-6 mt-8">
+        <!-- Certificações geradas via JS -->
+      </div>
+
+      <h3 class="text-2xl font-semibold text-slate-100 mt-16 mb-6 reveal">Formação Acadêmica</h3>
+
+      <div id="education-list" class="space-y-4">
+        <!-- Formação gerada via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section id="contato" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Contato</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <!-- Info -->
+        <div class="surface-panel p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Vamos conversar</h3>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <path d="M4 7l8 6 8-6" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">E-mail</p>
+                <a href="mailto:mirlaine.brandao@gmail.com" class="text-slate-300 mt-1 hover:text-neon transition-colors block break-all">
+                  mirlaine.brandao@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92a4.44 4.44 0 0 0-1.42-.58l-2.83-.81 1.18-3.87a4 4 0 0 0-3.55-3.55l-3.16 1.18-1.88-3.26a4 4 0 0 0-5.64 0L7.16 6.11a4 4 0 0 0-3.55 3.55l3.16 1.18-1.18 3.87a4 4 0 0 0 1.42.58l2.83.81-1.18 3.87a4 4 0 0 0 3.55 3.55l3.16 1.18 1.88 3.26a4 4 0 0 0 5.64 0l3.16 1.18-1.18-3.87a4 4 0 0 0-1.42-.58L22 16.92z" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">WhatsApp</p>
+                <a href="https://wa.me/553199200759" target="_blank" rel="noopener noreferrer" class="text-slate-300 mt-1 hover:text-neon transition-colors block break-all">
+                  (31) 9920-0759
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/mirlaine-brandão-5a8a1515a" target="_blank" rel="noopener noreferrer" class="text-slate-300 mt-1 hover:text-neon transition-colors block">
+                  linkedin.com/in/mirlaine-brandão-5a8a1515a
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">Localização</p>
+                <p class="text-slate-300 mt-1">Belo Horizonte e Região, Minas Gerais</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="contact-form" class="surface-panel-soft p-8 reveal" novalidate>
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Envie uma mensagem</h3>
+
+          <div id="form-feedback" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
+
+          <div class="mb-4">
+            <label for="name" class="block text-slate-300 mb-2 text-sm">Nome</label>
+            <input id="name" name="name" type="text" required maxlength="100"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 transition"
+              placeholder="Seu nome completo" />
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="block text-slate-300 mb-2 text-sm">E-mail</label>
+            <input id="email" name="email" type="email" required maxlength="150"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 transition"
+              placeholder="seu@email.com" />
+          </div>
+
+          <div class="mb-6">
+            <label for="message" class="block text-slate-300 mb-2 text-sm">Mensagem</label>
+            <textarea id="message" name="message" required rows="4" maxlength="1000"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 resize-none transition"
+              placeholder="Escreva sua mensagem..."></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full py-3 rounded-lg font-medium transition-all bg-gradient-to-r from-accent to-midGreen hover:from-midGreen hover:to-accent text-white shadow-lg hover:-translate-y-0.5">
+            Enviar mensagem
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-darkGreen/80 py-10 mt-20 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 gradient-text">Mirlaine Brandão</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Analista de Dados e BI especializado em SQL, Qlik, Power BI e AWS.
+            Transformando dados em insights estratégicos.
+          </p>
+          <div class="flex gap-3 mt-4">
+            <a href="https://www.linkedin.com/in/mirlaine-brandão-5a8a1515a" target="_blank" rel="noopener noreferrer"
+              class="bg-darkRose p-3 rounded-full text-slate-300 hover:text-neon transition-colors border border-white/5" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z" />
+              </svg>
+            </a>
+            <a href="mailto:mirlaine.brandao@gmail.com"
+              class="bg-darkRose p-3 rounded-full text-slate-300 hover:text-neon transition-colors border border-white/5" aria-label="E-mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <path d="M4 7l8 6 8-6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-slate-100 mb-4">Links Úteis</h3>
+          <ul class="space-y-2">
+            <li><a href="#sobre"         class="text-slate-400 hover:text-neon transition-colors text-sm">Sobre</a></li>
+            <li><a href="#experiencia"   class="text-slate-400 hover:text-neon transition-colors text-sm">Experiência</a></li>
+            <li><a href="#habilidades"   class="text-slate-400 hover:text-neon transition-colors text-sm">Habilidades</a></li>
+            <li><a href="#certificacoes" class="text-slate-400 hover:text-neon transition-colors text-sm">Certificações</a></li>
+            <li><a href="#contato"       class="text-slate-400 hover:text-neon transition-colors text-sm">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-slate-100 mb-4">Contato</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-center gap-3 text-slate-400">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <path d="M4 7l8 6 8-6" />
+              </svg>
+              mirlaine.brandao@gmail.com
+            </li>
+            <li class="flex items-center gap-3 text-slate-400">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Belo Horizonte, Minas Gerais
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-8 pt-6 text-center">
+        <p class="text-slate-500 text-sm">
+          © <span id="year"></span> Pablo Luan. Todos os direitos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    /* ============ NAVBAR SCROLL ============ */
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add("bg-darkGreen/80", "backdrop-blur-xl", "border-b", "border-white/10");
+      } else {
+        navbar.classList.remove("bg-darkGreen/80", "backdrop-blur-xl", "border-b", "border-white/10");
+      }
+    });
+
+    /* ============ MOBILE MENU ============ */
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconMenu   = document.getElementById("icon-menu");
+    const iconClose  = document.getElementById("icon-close");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("flex");
+      iconMenu.classList.toggle("hidden");
+      iconClose.classList.toggle("hidden");
+    });
+
+    document.querySelectorAll(".mobile-link").forEach((el) => {
+      el.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        iconMenu.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      });
+    });
+
+    /* ============ SCROLL REVEAL ============ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+    /* ============ EXPERIENCE DATA ============ */
+    const experiences = [
+      {
+        id: "qintess",
+        company: "Qintess / SPU-MGI",
+        role: "Analista de BI Jr.",
+        period: "Set 2025 — Presente · 1 ano 1 mês",
+        context: "Brasília, DF",
+        stack: "QlikView · Qlik Sense · SQL · Power BI · AWS",
+        bullets: [
+          "Atuo na Secretaria do Patrimônio da União (SPU), do Ministério da Gestão e Inovação em Serviços Públicos (MGI).",
+          "Modernização e padronização de serviços; apoio à migração de sistemas legados.",
+          "Consultas e tratamento de dados em SQL e criação de painéis analíticos em QlikView/Sense.",
+          "Referência técnica na validação e saneamento dos dados.",
+          "Colaboração em equipe ágil (Scrum/Jira) com times multidisciplinares.",
+        ],
+        impact: "Contribuição técnica na modernização de serviços públicos com dados.",
+      },
+      {
+        id: "guidance",
+        company: "Guidance Experts",
+        role: "Analista de Dados e BI Jr.",
+        period: "Jul 2024 — Abr 2025 · 10 meses",
+        context: "Belo Horizonte, Minas Gerais, Brasil",
+        stack: "SQL · AWS Athena/QuickSight · Power BI · GitLab",
+        bullets: [
+          "Extração e análise de dados utilizando SQL na plataforma AWS (Athena e QuickSight).",
+          "Criação de queries, desenvolvimento de visuais interativos e ajustes em painéis existentes.",
+          "Conversão de dashboards para Power BI.",
+          "Participação em apresentações para clientes, entregando insights estratégicos.",
+          "Uso de GitLab para versionamento e rastreabilidade das queries.",
+        ],
+        impact: "Entrega contínua de soluções analíticas com controle de versão.",
+      },
+      {
+        id: "sistema-divina",
+        company: "Sistema Divina Providência",
+        role: "Instrutor de Power BI e Banco de Dados",
+        period: "Jan 2022 — Jul 2024 · 2 anos 7 meses",
+        context: "Minas Gerais, Brasil",
+        stack: "Power BI · SQL · Excel · Educação",
+        bullets: [
+          "Elaboração e aplicação dos planos de aula de Banco de dados relacional e Power BI.",
+          "Desenvolvimento de bases de dados e criação de dashboards para análises.",
+          "Projetos e feiras tecnológicas.",
+        ],
+        impact: "Formação técnica e desenvolvimento de bases de dados analíticas.",
+      },
+    ];
+
+    /* ============ RENDER EXPERIENCE TABS ============ */
+    const tabsContainer = document.getElementById("tabs");
+    const expContent    = document.getElementById("experience-content");
+
+    experiences.forEach((exp, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "tab-btn text-left px-4 py-3 whitespace-nowrap md:whitespace-normal text-slate-400 hover:text-slate-200 hover:bg-white/5";
+      btn.dataset.id = exp.id;
+      btn.innerHTML = `<span class="block font-medium text-sm">${exp.company}</span><span class="block text-xs opacity-70">${exp.role}</span>`;
+      btn.addEventListener("click", () => setActiveExperience(exp.id));
+      tabsContainer.appendChild(btn);
+
+      if (idx === 0) btn.classList.add("active");
+    });
+
+    function setActiveExperience(id) {
+      const exp = experiences.find((e) => e.id === id);
+      if (!exp) return;
+
+      document.querySelectorAll(".tab-btn").forEach((b) => {
+        b.classList.toggle("active", b.dataset.id === id);
+      });
+
+      expContent.style.opacity = "0";
+      expContent.style.transform = "translateY(15px)";
+      setTimeout(() => {
+        expContent.innerHTML = `
+          <h3 class="text-xl font-semibold text-slate-100">
+            ${exp.role}
+            <span class="text-neon mx-2">·</span>
+            <span class="text-neon">${exp.company}</span>
+          </h3>
+          <p class="text-slate-400 mt-1 mb-1">${exp.period}</p>
+          <p class="text-sm text-neon/80 mb-4">${exp.context}</p>
+          <p class="text-sm text-slate-300 mb-4">
+            <strong class="text-slate-200">Stack:</strong> ${exp.stack}
+          </p>
+          <ul class="space-y-2">
+            ${exp.bullets.map((b) => `
+              <li class="flex gap-3 text-slate-300 leading-relaxed">
+                <span class="text-neon mt-1">•</span>
+                <span>${b}</span>
+              </li>
+            `).join("")}
+          </ul>
+          <div class="mt-5 border-l-2 border-neon/50 bg-neon/5 rounded-r-lg px-4 py-3">
+            <p class="text-sm text-slate-200">
+              <strong class="text-neon">Impacto:</strong> ${exp.impact}
+            </p>
+          </div>
+        `;
+        expContent.style.opacity = "1";
+        expContent.style.transform = "translateY(0)";
+      }, 150);
+    }
+
+    // Render first tab on load
+    setActiveExperience(experiences[0].id);
+
+    /* ============ SKILLS DATA ============ */
+    const categories = [
+      {
+        title: "BI & Ferramentas",
+        skills: [
+          { name: "QlikView", level: 90 },
+          { name: "Power BI", level: 85 },
+          { name: "SQL", level: 90 },
+          { name: "AWS (Athena/QuickSight)", level: 80 },
+        ],
+      },
+      {
+        title: "Dados & ETL",
+        skills: [
+          { name: "SQL (DQL, DDL, DML)", level: 90 },
+          { name: "ETL / Modelagem Multidimensional", level: 85 },
+          { name: "DAX / KPIs", level: 80 },
+          { name: "Governança de Dados", level: 75 },
+        ],
+      },
+      {
+        title: "Administração & Educação",
+        skills: [
+          { name: "Administração Qlik", level: 85 },
+          { name: "Validação / Saneamento", level: 85 },
+          { name: "Metodologia Ágil (Scrum)", level: 80 },
+          { name: "Instrução / Treinamento", level: 90 },
+        ],
+      },
+      {
+        title: "Ferramentas",
+        skills: [
+          { name: "Excel Avançado", level: 85 },
+          { name: "Git / GitLab", level: 80 },
+          { name: "Power BI", level: 85 },
+          { name: "AWS", level: 75 },
+        ],
+      },
+    ];
+
+    const tools = [
+      "QlikView", "Power BI", "SQL", "AWS", "ETL", "DAX",
+      "GitLab", "Excel Avançado", "QuickSight", "Athena"
+    ];
+
+    const skillsContainer = document.getElementById("skills-categories");
+    categories.forEach((cat) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-6 reveal";
+      div.innerHTML = `
+        <h3 class="text-xl font-semibold mb-6 text-center gradient-text tracking-tight">${cat.title}</h3>
+        <ul class="space-y-4">
+          ${cat.skills.map((s) => `
+            <li>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-200 text-sm">${s.name}</span>
+                <span class="text-slate-400 text-xs">${s.level}%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                <div class="skill-bar" data-level="${s.level}" style="width: 0;"></div>
+              </div>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+      skillsContainer.appendChild(div);
+    });
+
+    // Animate skill bars on view
+    const skillBarObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const level = bar.dataset.level;
+          setTimeout(() => { bar.style.transition = "width 1s ease-out"; bar.style.width = level + "%"; }, 100);
+          skillBarObserver.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll(".skill-bar").forEach((bar) => skillBarObserver.observe(bar));
+
+    // Render tools
+    const toolsGrid = document.getElementById("tools-grid");
+    tools.forEach((tool) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-4 text-center border border-white/10 hover:border-neon/40 transition-all duration-300 rounded-xl hover:-translate-y-1 reveal";
+      div.innerHTML = `<span class="text-slate-200 text-sm font-medium">${tool}</span>`;
+      toolsGrid.appendChild(div);
+    });
+
+    /* ============ CERTIFICATIONS ============ */
+    const certifications = [
+      { title: "Pós-graduação Lato Sensu — Ciência de Dados e Big Data", issuer: "PUC Minas", icon: "🎓" },
+      { title: "Graduação — Análise e Desenvolvimento de Sistemas", issuer: "Faculdade Pitágoras", icon: "📘" },
+      { title: "Técnico — Tecnologia em TIC / Sistemas", issuer: "Escola Técnica Divina Providência", icon: "💻" },
+      { title: "Indicadores-chave de desempenho (KPIs) e DAX", issuer: "Power BI", icon: "📊" },
+    ];
+
+    const certGrid = document.getElementById("certifications-grid");
+    certifications.forEach((c) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-6 flex items-start gap-4 reveal";
+      div.innerHTML = `
+        <span class="text-3xl">${c.icon}</span>
+        <div>
+          <h3 class="text-slate-100 font-semibold">${c.title}</h3>
+          <p class="text-slate-400 text-sm mt-1">${c.issuer}</p>
+        </div>
+      `;
+      certGrid.appendChild(div);
+    });
+
+    /* ============ EDUCATION ============ */
+    const education = [
+      {
+        course: "Pós-graduação Lato Sensu — Ciência de Dados e Big Data",
+        school: "PUC Minas",
+        period: "Mar 2024 — Set 2025",
+      },
+      {
+        course: "Bacharelado — Análise e Desenvolvimento de Sistemas",
+        school: "Faculdade Pitágoras",
+        period: "Ago 2018 — Ago 2021",
+      },
+      {
+        course: "Técnico — Tecnologia em TIC / Sistemas da Informação",
+        school: "Escola Técnica Divina Providência",
+        period: "2014 — 2015",
+      },
+    ];
+
+    const eduList = document.getElementById("education-list");
+    education.forEach((e) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel p-6 border-l-4 border-neon/60 reveal";
+      div.innerHTML = `
+        <h4 class="text-slate-100 font-semibold text-lg">${e.course}</h4>
+        <p class="text-neon text-sm mt-1">${e.school}</p>
+        <p class="text-slate-400 text-sm">${e.period}</p>
+      `;
+      eduList.appendChild(div);
+    });
+
+    /* ============ RE-RUN REVEAL FOR DYNAMIC ELEMENTS ============ */
+    setTimeout(() => {
+      document.querySelectorAll(".reveal:not(.visible)").forEach((el) => revealObserver.observe(el));
+    }, 50);
+
+    /* ============ CONTACT FORM ============ */
+    const form = document.getElementById("contact-form");
+    const feedback = document.getElementById("form-feedback");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name:    document.getElementById("name").value.trim(),
+        email:   document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim(),
+      };
+
+      if (!data.name || !data.email || !data.message) {
+        showFeedback("error", "Preencha todos os campos antes de enviar.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+      submitBtn.classList.add("bg-slate-600", "cursor-not-allowed");
+
+      // Simulação — substitua por fetch a um endpoint real (Formspree, EmailJS, etc.)
+      // Exemplo:
+      // const res = await fetch("https://formspree.io/f/SEU_ID", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
+
+      setTimeout(() => {
+        showFeedback("success", "Mensagem enviada com sucesso! Entrarei em contato em breve.");
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar mensagem";
+        submitBtn.classList.remove("bg-slate-600", "cursor-not-allowed");
+      }, 900);
+    });
+
+    function showFeedback(type, msg) {
+      feedback.classList.remove("hidden", "bg-green-500/10", "border", "border-green-500/40", "text-green-300", "bg-red-500/10", "border-red-500/40", "text-red-300");
+      if (type === "success") {
+        feedback.classList.add("bg-green-500/10", "border", "border-green-500/40", "text-green-300");
+      } else {
+        feedback.classList.add("bg-red-500/10", "border", "border-red-500/40", "text-red-300");
+      }
+      feedback.textContent = msg;
+      feedback.classList.remove("hidden");
+    }
+
+    /* ============ FOOTER YEAR ============ */
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
