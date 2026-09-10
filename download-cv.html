@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Currículo · Pablo Luan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #1a1a1a;
+    background: #e5e7eb;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  .toolbar {
+    background: #051208;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .toolbar button, .toolbar a {
+    background: #73d13d;
+    color: #051208;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .toolbar button:hover, .toolbar a:hover { background: #84cc16; }
+  .page {
+    max-width: 210mm;
+    margin: 24px auto;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,.15);
+  }
+  .header {
+    background: #0a1a0f;
+    color: #fff;
+    padding: 28px 36px;
+    border-bottom: 4px solid #73d13d;
+  }
+  .header h1 {
+    font-size: 24pt;
+    font-weight: 700;
+    color: #73d13d;
+    letter-spacing: .5px;
+  }
+  .header .role {
+    font-size: 12pt;
+    font-weight: 500;
+    color: #d1fae5;
+    margin-top: 2px;
+  }
+  .header .contact {
+    margin-top: 10px;
+    font-size: 10pt;
+    color: #e5e7eb;
+    line-height: 1.7;
+  }
+  .header .contact a { color: #84cc16; text-decoration: none; }
+  .content { padding: 26px 36px 36px; }
+  section { margin-bottom: 20px; }
+  h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #0a1a0f;
+    border-bottom: 2px solid #73d13d;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+  .summary { font-size: 10.5pt; color: #374151; text-align: justify; }
+  .job { margin-bottom: 14px; }
+  .job-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
+  .job-title { font-weight: 600; font-size: 11pt; color: #111827; }
+  .job-date { font-weight: 500; font-size: 10pt; color: #6b7280; white-space: nowrap; }
+  .job-company { font-size: 10.5pt; color: #2e6b37; font-weight: 500; margin-bottom: 4px; }
+  .job ul { margin-left: 18px; margin-top: 4px; }
+  .job li { font-size: 10.5pt; color: #374151; margin-bottom: 2px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .skills-grid p { font-size: 10.5pt; color: #374151; }
+  .skills-grid strong { color: #0a1a0f; }
+  .edu { margin-bottom: 8px; }
+  .edu strong { font-size: 10.5pt; color: #111827; display: block; }
+  .edu span { font-size: 10pt; color: #6b7280; }
+  @media print {
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; }
+    @page { margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <button onclick="window.print()">Baixar em PDF</button>
+  </div>
+
+  <div class="page">
+    <header class="header">
+      <h1>Pablo Luan</h1>
+      <div class="role">Analista de Dados · Especialista Qlik</div>
+      <div class="contact">
+        Distrito Federal, Brasil · (61) 99695-8368 · <a href="mailto:pabloluan6798@gmail.com">pabloluan6798@gmail.com</a><br />
+        <a href="https://www.linkedin.com/in/pablo-luan" target="_blank" rel="noopener">linkedin.com/in/pablo-luan</a>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <section>
+        <h2>Resumo Profissional</h2>
+        <p class="summary">
+          Analista de Dados com mais de 7 anos de experiência em QlikView, Qlik Sense e Power BI.
+          Especializado na criação de dashboards intuitivos e dinâmicos, administração de ambientes Qlik
+          e transformação de grandes volumes de dados em insights estratégicos. Atuação em projetos de
+          grande porte no Ministério da Economia, Senado Federal, Ministério do Turismo, Detran-GO, INSS,
+          Prefeituras de Santos (SP) e São Luís (MA), além do SEBRAE Nacional. Foco em fortalecer a tomada
+          de decisão por meio de análise de dados, ETL e governança de informação.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experiência Profissional</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Data Analyst | QlikView · Qlik Sense · Qlik NPrinting · Power BI · Mashup</span>
+            <span class="job-date">Abr 2019 — Dez 2024</span>
+          </div>
+          <div class="job-company">NowVertical BR (Formerly Grupo IN) — Brasília e Região, Brasil</div>
+          <ul>
+            <li>Criação de dashboards em QlikView e Qlik Sense.</li>
+            <li>Administração de servidores QlikView e Qlik Sense.</li>
+            <li>Publicação, atualização e remoção de dashboards nos ambientes de homologação e produção.</li>
+            <li>Instrutor auxiliar, apoiando e ministrando cursos da ferramenta Qlik Sense para capacitação de novos desenvolvedores.</li>
+            <li>Participação e liderança em projetos no Ministério da Economia, Ministério do Turismo, SEBRAE Nacional, INSS, FAB, Casa Civil do Rio de Janeiro, CHESF, Votorantim Cimentos, Prefeitura de São Luís do Maranhão, Detran-GO e Senado Federal.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Data Analyst | QlikView · Qlik Sense · Qlik NPrinting</span>
+            <span class="job-date">Dez 2018 — Mar 2019</span>
+          </div>
+          <div class="job-company">Maxtera Extrema Performance (Teradata Partner) — Brasília e Região, Brasil</div>
+          <ul>
+            <li>Projeto e compartilhamento de visualizações; criação de modelos de dados em QlikView e Qlik Sense.</li>
+            <li>Extração, modelagem, análise e disponibilização de informações de diferentes fontes de dados.</li>
+            <li>Construção de dashboards inteligentes, dinâmicos e focados no usuário, com filtros e agregações.</li>
+            <li>Administração dos servidores QlikView e Qlik Sense; concessão e remoção de licenças de usuários.</li>
+            <li>Automação de processos de carga de dashboards para projetos do Ministério do Desenvolvimento Social (MDS).</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Estagiário — Business Intelligence | QlikView · Qlik Sense</span>
+            <span class="job-date">Set 2017 — Nov 2018</span>
+          </div>
+          <div class="job-company">MDS — Ministério do Desenvolvimento Social e Combate à Fome — Brasília, DF</div>
+          <ul>
+            <li>Análise de fontes de dados (Teradata, PostgreSQL, MySQL, Oracle e Excel) via scripts SQL (DQL, DDL e DML).</li>
+            <li>Desenvolvimento de rotinas ETL focadas em extração, transformação, modelagem multidimensional e carga.</li>
+            <li>Desenvolvimento de dashboards QlikView de apoio à gestão estratégica e detalhada.</li>
+            <li>Administração de ambientes QlikView de Publicação, Homologação e Produção.</li>
+            <li>Implementação de dimensões, métricas, indicadores e gráficos nos projetos QlikView.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Estagiário</span>
+            <span class="job-date">Jan 2016 — Set 2017</span>
+          </div>
+          <div class="job-company">TJDFT — Brasília e Região, Brasil</div>
+          <ul>
+            <li>Elaboração de relatórios de acompanhamento em Excel e rotinas de conferência de dados estatísticos em SQL.</li>
+            <li>Programação e manutenção de sistemas em VBA, Access e Excel.</li>
+            <li>Análise de banco de dados e testes de funcionamento do sistema.</li>
+            <li>Elaboração de manuais, guias de fluxo, fluxogramas e organogramas.</li>
+            <li>Mapeamento de unidades de rede e suporte técnico aos usuários.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Funcionário de Avaliação e Monitoramento</span>
+            <span class="job-date">Abr 2015 — Dez 2015</span>
+          </div>
+          <div class="job-company">Líder Telecom</div>
+          <ul>
+            <li>Atendimento de suporte em campo e remoto; instalação de equipamentos e softwares.</li>
+            <li>Manutenção corretiva e preventiva do sistema.</li>
+            <li>Monitoramento de ligações de vendas dos produtos e serviços do UOL.</li>
+            <li>Treinamento de novos operadores e aplicação de feedbacks à equipe.</li>
+            <li>Envio de ligações para central do UOL via FTP (FileZilla).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Habilidades Técnicas</h2>
+        <div class="skills-grid">
+          <p><strong>BI & Analytics:</strong> QlikView, Qlik Sense, Qlik NPrinting, Power BI, Mashup</p>
+          <p><strong>Bancos de Dados:</strong> SQL, Teradata, PostgreSQL, MySQL, Oracle, SQL Server</p>
+          <p><strong>Dados:</strong> ETL, Modelagem Multidimensional, DQL, DDL, DML</p>
+          <p><strong>Administração:</strong> QlikView Server, Qlik Sense Server, Governança de Dados</p>
+          <p><strong>Ferramentas:</strong> Excel, VBA, Access, Git</p>
+          <p><strong>Competências:</strong> Arquiteto de Dados, Administração de Ambientes Qlik</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certificações</h2>
+        <ul style="margin-left:18px;">
+          <li>Qlik Sense Data Architect Certification — Qlik</li>
+          <li>Qlik Data Analytics Certification — Qlik</li>
+          <li>Qlik Data Literacy Certification — Qlik</li>
+          <li>SQL Completo — Curso profissionalizante</li>
+          <li>Curso de Informática, Montagem e Manutenção de Computadores — Formação técnica</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Formação Acadêmica</h2>
+        <div class="edu">
+          <strong>Pós-graduação Lato Sensu — Especialização em Business Intelligence</strong>
+          <span>IESB · Nov 2022 — Dez 2023</span>
+        </div>
+        <div class="edu">
+          <strong>Bacharelado em Sistemas de Informação</strong>
+          <span>Anhanguera Educacional · 2015 — 2018</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Idiomas</h2>
+        <p style="font-size:10.5pt;color:#374151;">Português (nativo) · Inglês</p>
+      </section>
+
+    </div>
+  </div>
+
+</body>
+</html>

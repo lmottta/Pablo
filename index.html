@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pablo Luan · Analista de Dados & Especialista Qlik</title>
+  <meta name="description" content="Analista de Dados com mais de 7 anos de experiência em QlikView, Qlik Sense e Power BI. Projetos em Ministérios, Senado Federal, INSS e SEBRAE Nacional." />
+  <meta name="theme-color" content="#051208" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Paleta baseada no Qlik Sense (Verde/Lima)
+            primary:     "#0a1a0f",
+            secondary:   "#122b18",
+            accent:      "#52c41a", // Verde Qlik
+            darkGreen:   "#051208",
+            midGreen:    "#2e6b37",
+            lightGreen:  "#84cc16", // Lima brilhante
+            surface:     "#0f1f14",
+            surfaceSoft: "#162e1d",
+            neon:        "#73d13d", // Verde neon Qlik
+            highlight:   "#facc15", // Amarelo para contraste
+          },
+          fontFamily: { sans: ["Poppins", "sans-serif"] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a1a0f;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(132, 204, 22, 0.12), transparent 35%),
+        radial-gradient(circle at 85% 15%, rgba(82, 196, 26, 0.18), transparent 30%),
+        radial-gradient(circle at 75% 80%, rgba(115, 209, 61, 0.12), transparent 35%),
+        linear-gradient(145deg, #051208 0%, #0a1a0f 45%, #122b18 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #73d13d, #84cc16, #52c41a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .surface-panel {
+      background: rgba(15, 31, 20, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(115, 209, 61, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .surface-panel-soft {
+      background: rgba(22, 46, 29, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(115, 209, 61, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-15px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes progressGrow { from { width: 0; } }
+    .skill-bar {
+      height: 0.625rem;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #73d13d, #52c41a);
+    }
+
+    /* Tab active state */
+    .tab-btn {
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .tab-btn.active {
+      background: rgba(115, 209, 61, 0.1);
+      color: #73d13d;
+      border-left-color: #73d13d;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    /* Form focus */
+    .form-input:focus {
+      outline: none;
+      border-color: #73d13d;
+      box-shadow: 0 0 0 3px rgba(115, 209, 61, 0.15);
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-100 antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="#" class="text-xl font-semibold gradient-text">Pablo Luan</a>
+
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#sobre"          class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Sobre</a></li>
+        <li><a href="#experiencia"    class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Experiência</a></li>
+        <li><a href="#habilidades"    class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Habilidades</a></li>
+        <li><a href="#certificacoes"  class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Certificações</a></li>
+        <li><a href="#contato"        class="text-slate-300 hover:text-neon transition-colors text-sm font-medium">Contato</a></li>
+      </ul>
+
+      <button id="menu-toggle" class="md:hidden text-slate-200 p-2" aria-label="Abrir menu">
+        <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6l12 12M6 18L18 6" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <ul id="mobile-menu" class="hidden md:hidden bg-darkGreen/95 backdrop-blur-xl border-t border-white/10 px-6 py-4 flex-col gap-4">
+      <li><a href="#sobre"         class="mobile-link text-slate-300 hover:text-neon transition-colors">Sobre</a></li>
+      <li><a href="#experiencia"   class="mobile-link text-slate-300 hover:text-neon transition-colors">Experiência</a></li>
+      <li><a href="#habilidades"   class="mobile-link text-slate-300 hover:text-neon transition-colors">Habilidades</a></li>
+      <li><a href="#certificacoes" class="mobile-link text-slate-300 hover:text-neon transition-colors">Certificações</a></li>
+      <li><a href="#contato"       class="mobile-link text-slate-300 hover:text-neon transition-colors">Contato</a></li>
+    </ul>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="min-h-screen flex items-center justify-center pt-28 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+        <div class="flex-1 text-center md:text-left reveal">
+          <span class="inline-flex px-4 py-2 rounded-full border border-neon/40 bg-neon/10 text-sm text-neon mb-6">
+            Disponível para novos projetos
+          </span>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold mb-4 tracking-tight gradient-text">
+            Pablo Luan
+          </h1>
+
+          <h2 class="text-xl sm:text-2xl text-slate-200 font-medium mb-4">
+            Analista de Dados · Especialista Qlik
+          </h2>
+
+          <p class="text-slate-300 text-lg mb-8 max-w-xl leading-relaxed mx-auto md:mx-0">
+            Mais de 7 anos transformando grandes volumes de dados em insights estratégicos com
+            <span class="text-neon">QlikView</span>, <span class="text-neon">Qlik Sense</span> e
+            <span class="text-neon">Power BI</span>. Projetos em Ministérios, Senado Federal,
+            INSS, SEBRAE Nacional e grandes instituições públicas e privadas.
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <a href="#contato" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-midGreen text-white hover:from-midGreen hover:to-accent transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+              Entrar em contato
+            </a>
+            <a href="#experiencia" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium border border-neon/50 text-neon hover:bg-neon/10 transition-all duration-300">
+              Ver experiência
+            </a>
+            <a href="download-cv.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium border border-neutral-700 bg-neutral-800 text-slate-300 hover:text-neon transition-all duration-300" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                <path d="M21 15v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l1.4 5h4l1.4-5h7a2 2 0 0 1 2 2z" />
+                <polyline points="7 10 12 15 17 10" />
+                <line points="12 15 12 3" />
+              </svg>
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="relative animate-float reveal">
+          <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-neon/40 shadow-[0_0_60px_rgba(115,209,61,0.35)]">
+            <!-- Imagem inserida aqui. Certifique-se de salvar a foto como "pablo.jpg" na mesma pasta -->
+            <img
+              src="pablo.jpg"
+              alt="Pablo Luan"
+              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Pablo+Luan&size=400&background=051208&color=73d13d&bold=true&font-size=0.4';"
+              class="object-cover w-full h-full"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Sobre mim</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <div class="surface-panel p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-4 text-slate-100">Transformando dados em decisões</h3>
+          <p class="text-slate-300 leading-relaxed mb-4">
+            Com mais de sete anos de experiência como Analista de Dados, sou especializado nas
+            ferramentas <span class="text-neon">QlikView</span>,
+            <span class="text-neon">Qlik Sense</span> e
+            <span class="text-neon">Power BI</span>.
+          </p>
+          <p class="text-slate-300 leading-relaxed mb-4">
+            Ao longo da minha carreira, liderei projetos de grande porte em organizações de
+            destaque como o Ministério da Economia, Senado Federal, Ministério do Turismo,
+            Detran-GO, INSS, Prefeituras de Santos (SP) e São Luís (MA), além do SEBRAE Nacional.
+          </p>
+          <p class="text-slate-300 leading-relaxed">
+            Meu foco é fortalecer a tomada de decisão nas organizações por meio do desenvolvimento
+            de dashboards intuitivos e dinâmicos. A administração de ambientes Qlik é parte
+            essencial do meu trabalho, reforçando meu compromisso com a excelência operacional.
+          </p>
+        </div>
+
+        <div class="surface-panel-soft p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Informações</h3>
+          <ul class="space-y-4">
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Localização</span>
+              <span class="text-slate-100 font-medium text-sm">Distrito Federal, Brasil</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Experiência</span>
+              <span class="text-slate-100 font-medium text-sm">7+ anos em Análise de Dados</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Especialidade</span>
+              <span class="text-slate-100 font-medium text-sm">QlikView · Qlik Sense · Power BI</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">Idiomas</span>
+              <span class="text-slate-100 font-medium text-sm">Português (nativo) · Inglês</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/5 pb-3">
+              <span class="text-slate-400 text-sm">E-mail</span>
+              <span class="text-slate-100 font-medium text-sm">pabloluan6798@gmail.com</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:justify-between gap-1">
+              <span class="text-slate-400 text-sm">LinkedIn</span>
+              <span class="text-slate-100 font-medium text-sm">/in/pablo-luan</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIÊNCIA ===================== -->
+  <section id="experiencia" class="py-20 bg-gradient-to-b from-darkGreen/50 to-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Experiência</h2>
+
+      <div class="grid md:grid-cols-[260px_1fr] gap-6 mt-8">
+        <div id="tabs" class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2">
+          <!-- Tabs são geradas via JS -->
+        </div>
+
+        <div id="experience-content" class="surface-panel p-7 reveal">
+          <!-- Conteúdo é gerado via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HABILIDADES ===================== -->
+  <section id="habilidades" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Habilidades</h2>
+
+      <div id="skills-categories" class="grid md:grid-cols-2 gap-6 mt-8">
+        <!-- Categorias geradas via JS -->
+      </div>
+
+      <h3 class="text-2xl font-semibold text-slate-100 mt-16 mb-6 text-center reveal">
+        Ferramentas & Tecnologias
+      </h3>
+
+      <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <!-- Ferramentas geradas via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICAÇÕES ===================== -->
+  <section id="certificacoes" class="py-20 bg-gradient-to-b from-darkGreen/50 to-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Certificações & Formação</h2>
+
+      <div id="certifications-grid" class="grid md:grid-cols-2 gap-6 mt-8">
+        <!-- Certificações geradas via JS -->
+      </div>
+
+      <h3 class="text-2xl font-semibold text-slate-100 mt-16 mb-6 reveal">Formação Acadêmica</h3>
+
+      <div id="education-list" class="space-y-4">
+        <!-- Formação gerada via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section id="contato" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text mb-4 reveal">Contato</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <!-- Info -->
+        <div class="surface-panel p-8 reveal">
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Vamos conversar</h3>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <path d="M4 7l8 6 8-6" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">E-mail</p>
+                <a href="mailto:pabloluan6798@gmail.com" class="text-slate-300 mt-1 hover:text-neon transition-colors block break-all">
+                  pabloluan6798@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92a4.44 4.44 0 0 0-1.42-.58l-2.83-.81 1.18-3.87a4 4 0 0 0-3.55-3.55l-3.16 1.18-1.88-3.26a4 4 0 0 0-5.64 0L7.16 6.11a4 4 0 0 0-3.55 3.55l3.16 1.18-1.18 3.87a4 4 0 0 0 1.42.58l2.83.81-1.18 3.87a4 4 0 0 0 3.55 3.55l3.16 1.18 1.88 3.26a4 4 0 0 0 5.64 0l3.16 1.18-1.18-3.87a4 4 0 0 0-1.42-.58L22 16.92z" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">WhatsApp</p>
+                <a href="https://wa.me/61996958368?text=Ol%C3%A0%20Pablo,%20gostaria%20de%20entender%20mais%20sobre%20suas%20experi%C3%AAncias" target="_blank" rel="noopener noreferrer" class="text-slate-300 mt-1 hover:text-neon transition-colors block break-all">
+                  (61) 99695-8368
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/pablo-luan" target="_blank" rel="noopener noreferrer" class="text-slate-300 mt-1 hover:text-neon transition-colors block">
+                  linkedin.com/in/pablo-luan
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-neon/10 p-3 rounded-full text-neon shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-medium text-slate-100">Localização</p>
+                <p class="text-slate-300 mt-1">Distrito Federal, Brasil</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="contact-form" class="surface-panel-soft p-8 reveal" novalidate>
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Envie uma mensagem</h3>
+
+          <div id="form-feedback" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
+
+          <div class="mb-4">
+            <label for="name" class="block text-slate-300 mb-2 text-sm">Nome</label>
+            <input id="name" name="name" type="text" required maxlength="100"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 transition"
+              placeholder="Seu nome completo" />
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="block text-slate-300 mb-2 text-sm">E-mail</label>
+            <input id="email" name="email" type="email" required maxlength="150"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 transition"
+              placeholder="seu@email.com" />
+          </div>
+
+          <div class="mb-6">
+            <label for="message" class="block text-slate-300 mb-2 text-sm">Mensagem</label>
+            <textarea id="message" name="message" required rows="4" maxlength="1000"
+              class="form-input w-full px-4 py-3 bg-darkGreen/40 border border-white/15 rounded-lg text-slate-200 placeholder-slate-500 resize-none transition"
+              placeholder="Escreva sua mensagem..."></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full py-3 rounded-lg font-medium transition-all bg-gradient-to-r from-accent to-midGreen hover:from-midGreen hover:to-accent text-white shadow-lg hover:-translate-y-0.5">
+            Enviar mensagem
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-darkGreen/80 py-10 mt-20 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 gradient-text">Pablo Luan</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Analista de Dados especializado em QlikView, Qlik Sense e Power BI. Transformando
+            grandes volumes de dados em insights estratégicos.
+          </p>
+          <div class="flex gap-3 mt-4">
+            <a href="https://www.linkedin.com/in/pablo-luan" target="_blank" rel="noopener noreferrer"
+              class="bg-darkGreen p-3 rounded-full text-slate-300 hover:text-neon transition-colors border border-white/5" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z" />
+              </svg>
+            </a>
+            <a href="mailto:pabloluan6798@gmail.com"
+              class="bg-darkGreen p-3 rounded-full text-slate-300 hover:text-neon transition-colors border border-white/5" aria-label="E-mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <path d="M4 7l8 6 8-6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-slate-100 mb-4">Links Úteis</h3>
+          <ul class="space-y-2">
+            <li><a href="#sobre"         class="text-slate-400 hover:text-neon transition-colors text-sm">Sobre</a></li>
+            <li><a href="#experiencia"   class="text-slate-400 hover:text-neon transition-colors text-sm">Experiência</a></li>
+            <li><a href="#habilidades"   class="text-slate-400 hover:text-neon transition-colors text-sm">Habilidades</a></li>
+            <li><a href="#certificacoes" class="text-slate-400 hover:text-neon transition-colors text-sm">Certificações</a></li>
+            <li><a href="#contato"       class="text-slate-400 hover:text-neon transition-colors text-sm">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-slate-100 mb-4">Contato</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-center gap-3 text-slate-400">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <path d="M4 7l8 6 8-6" />
+              </svg>
+              pabloluan6798@gmail.com
+            </li>
+            <li class="flex items-center gap-3 text-slate-400">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Distrito Federal, Brasil
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-8 pt-6 text-center">
+        <p class="text-slate-500 text-sm">
+          © <span id="year"></span> Pablo Luan. Todos os direitos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    /* ============ NAVBAR SCROLL ============ */
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add("bg-darkGreen/80", "backdrop-blur-xl", "border-b", "border-white/10");
+      } else {
+        navbar.classList.remove("bg-darkGreen/80", "backdrop-blur-xl", "border-b", "border-white/10");
+      }
+    });
+
+    /* ============ MOBILE MENU ============ */
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconMenu   = document.getElementById("icon-menu");
+    const iconClose  = document.getElementById("icon-close");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("flex");
+      iconMenu.classList.toggle("hidden");
+      iconClose.classList.toggle("hidden");
+    });
+
+    document.querySelectorAll(".mobile-link").forEach((el) => {
+      el.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        iconMenu.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      });
+    });
+
+    /* ============ SCROLL REVEAL ============ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+    /* ============ EXPERIENCE DATA ============ */
+    const experiences = [
+      {
+        id: "nowvertical",
+        company: "NowVertical BR",
+        role: "Data Analyst",
+        period: "Abr 2019 — Dez 2024 · 5 anos 9 meses",
+        context: "Brasília e Região, Brasil",
+        stack: "QlikView · Qlik Sense · Qlik NPrinting · Power BI · Mashup",
+        bullets: [
+          "Criação de dashboards em QlikView e Qlik Sense para órgãos públicos e privados.",
+          "Administração completa dos servidores QlikView e Qlik Sense (publicação, atualização e remoção em homologação e produção).",
+          "Instrutor auxiliar em cursos de Qlik Sense para capacitação de novos desenvolvedores.",
+          "Atuação e liderança em projetos no Ministério da Economia, Ministério do Turismo, SEBRAE Nacional, INSS, FAB, Casa Civil do Rio de Janeiro, CHESF, Votorantim Cimentos, Prefeitura de São Luís (MA), Detran-GO e Senado Federal.",
+        ],
+        impact: "Referência técnica em Qlik para contas estratégicas do setor público federal.",
+      },
+      {
+        id: "maxtera",
+        company: "Maxtera Extrema Performance",
+        role: "Data Analyst",
+        period: "Dez 2018 — Mar 2019 · 4 meses",
+        context: "Brasília e Região, Brasil",
+        stack: "QlikView · Qlik Sense · Qlik NPrinting",
+        bullets: [
+          "Projeto e compartilhamento de visualizações; criação de modelos de dados em QlikView e Qlik Sense.",
+          "Extração, modelagem, análise e disponibilização de informações de diferentes fontes de dados.",
+          "Construção de dashboards inteligentes, dinâmicos e focados no usuário, com filtros e agregações.",
+          "Administração dos servidores QlikView e Qlik Sense, incluindo gestão de licenças de usuários.",
+          "Automação de processos de carga de painéis para o Ministério do Desenvolvimento Social (MDS).",
+        ],
+        impact: "Automação de rotinas de carga que reduziram esforço manual no MDS.",
+      },
+      {
+        id: "mds",
+        company: "MDS — Ministério do Desenvolvimento Social",
+        role: "Estagiário · Business Intelligence",
+        period: "Set 2017 — Nov 2018 · 1 ano 3 meses",
+        context: "Brasília, DF",
+        stack: "QlikView · Qlik Sense · SQL · Teradata · PostgreSQL · MySQL · Oracle",
+        bullets: [
+          "Análise de fontes de dados (Teradata, PostgreSQL, MySQL, Oracle e Excel) via scripts SQL (DQL, DDL, DML).",
+          "Desenvolvimento de rotinas ETL focadas em extração, transformação, modelagem multidimensional e carga.",
+          "Desenvolvimento de painéis QlikView de apoio à gestão estratégica e detalhada.",
+          "Administração de ambientes QlikView de Publicação, Homologação e Produção.",
+          "Implementação de dimensões, métricas, indicadores e gráficos nos projetos QlikView.",
+        ],
+        impact: "Base sólida em ETL e modelagem multidimensional aplicada a políticas públicas.",
+      },
+      {
+        id: "estagio-bi",
+        company: "Estágio em BI & Sistemas",
+        role: "Estagiário",
+        period: "Jan 2016 — Set 2017 · 1 ano 9 meses",
+        context: "Brasília e Região, Brasil",
+        stack: "Excel · VBA · Access · SQL",
+        bullets: [
+          "Elaboração de relatórios de acompanhamento em Excel.",
+          "Criação de rotinas SQL para conferência de dados estatísticos.",
+          "Programação de sistemas em VBA e manutenção em VBA, Access e Excel.",
+          "Análise de banco de dados, testes de funcionamento do sistema e mapeamento de unidades de rede.",
+          "Suporte técnico aos usuários.",
+        ],
+        impact: "Automação de rotinas administrativas com VBA, base para a transição a BI.",
+      },
+      {
+        id: "lider",
+        company: "Líder Telecom",
+        role: "Funcionário de Avaliação e Monitoramento",
+        period: "Abr 2015 — Dez 2015 · 9 meses",
+        context: "Brasil",
+        stack: "Suporte técnico · FTP (FileZilla)",
+        bullets: [
+          "Atendimento de suporte em campo e remoto; instalação de equipamentos e softwares.",
+          "Manutenção corretiva e preventiva do sistema.",
+          "Monitoramento de ligações de vendas dos produtos e serviços UOL.",
+          "Treinamento de novos operadores e feedback à equipe.",
+          "Envio de ligações para central da UOL via FTP (FileZilla).",
+        ],
+        impact: "Primeira experiência em monitoramento e qualidade operacional.",
+      },
+    ];
+
+    /* ============ RENDER EXPERIENCE TABS ============ */
+    const tabsContainer = document.getElementById("tabs");
+    const expContent    = document.getElementById("experience-content");
+
+    experiences.forEach((exp, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "tab-btn text-left px-4 py-3 whitespace-nowrap md:whitespace-normal text-slate-400 hover:text-slate-200 hover:bg-white/5";
+      btn.dataset.id = exp.id;
+      btn.innerHTML = `<span class="block font-medium text-sm">${exp.company}</span><span class="block text-xs opacity-70">${exp.role}</span>`;
+      btn.addEventListener("click", () => setActiveExperience(exp.id));
+      tabsContainer.appendChild(btn);
+
+      if (idx === 0) btn.classList.add("active");
+    });
+
+    function setActiveExperience(id) {
+      const exp = experiences.find((e) => e.id === id);
+      if (!exp) return;
+
+      document.querySelectorAll(".tab-btn").forEach((b) => {
+        b.classList.toggle("active", b.dataset.id === id);
+      });
+
+      expContent.style.opacity = "0";
+      expContent.style.transform = "translateY(15px)";
+      setTimeout(() => {
+        expContent.innerHTML = `
+          <h3 class="text-xl font-semibold text-slate-100">
+            ${exp.role}
+            <span class="text-neon mx-2">·</span>
+            <span class="text-neon">${exp.company}</span>
+          </h3>
+          <p class="text-slate-400 mt-1 mb-1">${exp.period}</p>
+          <p class="text-sm text-neon/80 mb-4">${exp.context}</p>
+          <p class="text-sm text-slate-300 mb-4">
+            <strong class="text-slate-200">Stack:</strong> ${exp.stack}
+          </p>
+          <ul class="space-y-2">
+            ${exp.bullets.map((b) => `
+              <li class="flex gap-3 text-slate-300 leading-relaxed">
+                <span class="text-neon mt-1">•</span>
+                <span>${b}</span>
+              </li>
+            `).join("")}
+          </ul>
+          <div class="mt-5 border-l-2 border-neon/50 bg-neon/5 rounded-r-lg px-4 py-3">
+            <p class="text-sm text-slate-200">
+              <strong class="text-neon">Impacto:</strong> ${exp.impact}
+            </p>
+          </div>
+        `;
+        expContent.style.opacity = "1";
+        expContent.style.transform = "translateY(0)";
+      }, 150);
+    }
+
+    // Render first tab on load
+    setActiveExperience(experiences[0].id);
+
+    /* ============ SKILLS DATA ============ */
+    const categories = [
+      {
+        title: "Ferramentas de BI",
+        skills: [
+          { name: "QlikView", level: 95 },
+          { name: "Qlik Sense", level: 95 },
+          { name: "Qlik NPrinting", level: 85 },
+          { name: "Microsoft Power BI", level: 80 },
+        ],
+      },
+      {
+        title: "Dados & ETL",
+        skills: [
+          { name: "SQL (DQL, DDL, DML)", level: 90 },
+          { name: "Modelagem Multidimensional", level: 85 },
+          { name: "ETL", level: 85 },
+          { name: "Arquitetura de Dados", level: 80 },
+        ],
+      },
+      {
+        title: "Administração & Servidores",
+        skills: [
+          { name: "Administração QlikView/Qlik Sense", level: 90 },
+          { name: "Gestão de Licenças", level: 85 },
+          { name: "Publicação (Dev/Homolog/Prod)", level: 90 },
+          { name: "Mashup", level: 75 },
+        ],
+      },
+      {
+        title: "Bancos de Dados",
+        skills: [
+          { name: "Teradata", level: 80 },
+          { name: "PostgreSQL", level: 80 },
+          { name: "MySQL", level: 80 },
+          { name: "Oracle", level: 75 },
+        ],
+      },
+    ];
+
+    const tools = [
+      "QlikView", "Qlik Sense", "Qlik NPrinting", "Power BI",
+      "SQL", "ETL", "Mashup", "VBA",
+      "Teradata", "PostgreSQL", "MySQL", "Oracle",
+      "Excel Avançado", "Access", "FileZilla", "Git",
+    ];
+
+    const skillsContainer = document.getElementById("skills-categories");
+    categories.forEach((cat) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-6 reveal";
+      div.innerHTML = `
+        <h3 class="text-xl font-semibold mb-6 text-center gradient-text tracking-tight">${cat.title}</h3>
+        <ul class="space-y-4">
+          ${cat.skills.map((s) => `
+            <li>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-200 text-sm">${s.name}</span>
+                <span class="text-slate-400 text-xs">${s.level}%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                <div class="skill-bar" data-level="${s.level}" style="width: 0;"></div>
+              </div>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+      skillsContainer.appendChild(div);
+    });
+
+    // Animate skill bars on view
+    const skillBarObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const level = bar.dataset.level;
+          setTimeout(() => { bar.style.transition = "width 1s ease-out"; bar.style.width = level + "%"; }, 100);
+          skillBarObserver.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll(".skill-bar").forEach((bar) => skillBarObserver.observe(bar));
+
+    // Render tools
+    const toolsGrid = document.getElementById("tools-grid");
+    tools.forEach((tool) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-4 text-center border border-white/10 hover:border-neon/40 transition-all duration-300 rounded-xl hover:-translate-y-1 reveal";
+      div.innerHTML = `<span class="text-slate-200 text-sm font-medium">${tool}</span>`;
+      toolsGrid.appendChild(div);
+    });
+
+    /* ============ CERTIFICATIONS ============ */
+    const certifications = [
+      { title: "Qlik Sense Data Architect Certification",  issuer: "Qlik", icon: "🏗️" },
+      { title: "Qlik Data Analytics Certification",        issuer: "Qlik", icon: "📊" },
+      { title: "Qlik Data Literacy Certification",         issuer: "Qlik", icon: "📚" },
+      { title: "SQL Completo",                             issuer: "Curso profissionalizante", icon: "🗄️" },
+      { title: "Curso de Informática, Montagem e Manutenção de Computadores", issuer: "Formação técnica", icon: "💻" },
+    ];
+
+    const certGrid = document.getElementById("certifications-grid");
+    certifications.forEach((c) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel-soft p-6 flex items-start gap-4 reveal";
+      div.innerHTML = `
+        <span class="text-3xl">${c.icon}</span>
+        <div>
+          <h3 class="text-slate-100 font-semibold">${c.title}</h3>
+          <p class="text-slate-400 text-sm mt-1">${c.issuer}</p>
+        </div>
+      `;
+      certGrid.appendChild(div);
+    });
+
+    /* ============ EDUCATION ============ */
+    const education = [
+      {
+        course: "Pós-graduação Lato Sensu — Especialização em Business Intelligence",
+        school: "IESB",
+        period: "Nov 2022 — Dez 2023",
+      },
+      {
+        course: "Bacharelado em Sistemas de Informação",
+        school: "Anhanguera Educacional",
+        period: "2015 — 2018",
+      },
+    ];
+
+    const eduList = document.getElementById("education-list");
+    education.forEach((e) => {
+      const div = document.createElement("div");
+      div.className = "surface-panel p-6 border-l-4 border-neon/60 reveal";
+      div.innerHTML = `
+        <h4 class="text-slate-100 font-semibold text-lg">${e.course}</h4>
+        <p class="text-neon text-sm mt-1">${e.school}</p>
+        <p class="text-slate-400 text-sm">${e.period}</p>
+      `;
+      eduList.appendChild(div);
+    });
+
+    /* ============ RE-RUN REVEAL FOR DYNAMIC ELEMENTS ============ */
+    setTimeout(() => {
+      document.querySelectorAll(".reveal:not(.visible)").forEach((el) => revealObserver.observe(el));
+    }, 50);
+
+    /* ============ CONTACT FORM ============ */
+    const form = document.getElementById("contact-form");
+    const feedback = document.getElementById("form-feedback");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name:    document.getElementById("name").value.trim(),
+        email:   document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim(),
+      };
+
+      if (!data.name || !data.email || !data.message) {
+        showFeedback("error", "Preencha todos os campos antes de enviar.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+      submitBtn.classList.add("bg-slate-600", "cursor-not-allowed");
+
+      // Simulação — substitua por fetch a um endpoint real (Formspree, EmailJS, etc.)
+      // Exemplo:
+      // const res = await fetch("https://formspree.io/f/SEU_ID", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
+
+      setTimeout(() => {
+        showFeedback("success", "Mensagem enviada com sucesso! Entrarei em contato em breve.");
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar mensagem";
+        submitBtn.classList.remove("bg-slate-600", "cursor-not-allowed");
+      }, 900);
+    });
+
+    function showFeedback(type, msg) {
+      feedback.classList.remove("hidden", "bg-green-500/10", "border", "border-green-500/40", "text-green-300", "bg-red-500/10", "border-red-500/40", "text-red-300");
+      if (type === "success") {
+        feedback.classList.add("bg-green-500/10", "border", "border-green-500/40", "text-green-300");
+      } else {
+        feedback.classList.add("bg-red-500/10", "border", "border-red-500/40", "text-red-300");
+      }
+      feedback.textContent = msg;
+      feedback.classList.remove("hidden");
+    }
+
+    /* ============ FOOTER YEAR ============ */
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
